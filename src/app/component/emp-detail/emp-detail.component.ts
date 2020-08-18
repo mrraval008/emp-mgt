@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeModel } from 'src/app/model/employee.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UtilService } from 'src/app/service/util.service';
 import { EmployeeService } from 'src/app/service/employee.service';
@@ -17,7 +17,7 @@ export class EmpDetailComponent implements OnInit {
   public showLoader:boolean = true;
   public mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
   public emailPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
-  constructor(private route: ActivatedRoute,private utilService:UtilService,private empService:EmployeeService) { }
+  constructor(private route: ActivatedRoute,private router:Router ,private utilService:UtilService,private empService:EmployeeService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -48,14 +48,12 @@ export class EmpDetailComponent implements OnInit {
        let {name,email,companyName,contactNum,designation} = form.value;
       if(!this.isEditMode){
             let emp = new EmployeeModel(this.utilService.genarateRandomId(),name,email,companyName,contactNum,designation,this.empData.avatar);
-            this.empService.createEmployee(emp)
+            this.empService.createEmployee(emp);
+            alert('Employee created succesfully.')
+            this.router.navigate(['/emp_list'])
       }else{
         this.empService.updateEmployee(this.empData)
-      }
-      if(this.isEditMode){
         alert('Employee updated succesfully.')
-      }else{
-        alert('Employee created succesfully.')
       }
       this.showLoader = false;
       

@@ -11,6 +11,5 @@ export class EmpCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('emp card get called',this.empData);
   }
 }
