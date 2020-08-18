@@ -1,0 +1,44 @@
+.emp_list_container{
+    padding: 1rem;
+}
+.emp_cards{
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.create_btn{
+    right: 0;
+}
+
+.search_container{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input_container input{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    height: 2rem;
+    width: 18rem;
+    padding: 1rem;
+}
+
+.sortby_container{
+    display: flex;
+    padding: 0 1rem;
+}
+.sort_con{
+    margin: 0 1rem;
+}
+.icon{
+    cursor: pointer;
+    margin: 0 .1rem
+}
+.icon:hover{
+    transform: scale(1.2)
+}
+h3,span{
+    font-size: 1.3rem;
+    color: var(--black-color)
+}

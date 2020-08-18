@@ -1,0 +1,38 @@
+<section class="emp_list_section">
+        
+        <a [routerLink]="['/emp_create']" class="btn header_btn create_btn">Create</a>
+        <div class="search_container">
+            <div class="input_container"> 
+                <input [(ngModel)]="filterText" placeholder="Search Name ...">      
+            </div>
+            <div class="sortby_container" (click)="onSort($event)">
+                    <h3>Sort By:</h3>
+                    <div class="sort_con">
+                        <span>Name : </span>
+                        <span id="sort-name-asc" class="icon">&#8593;</span>
+                        <span id="sort-name-desc" class="icon">&#8595;</span>
+                    </div>
+                    <div class="sort_con">
+                            <span>Company Name : </span>
+                            <span id="sort-companyName-asc" class="icon">&#8593;</span>
+                            <span id="sort-companyName-desc" class="icon">&#8595;</span>
+                        </div>
+            </div>
+        </div>
+    <div class="emp_list_container">
+        <div>
+            <div *ngIf="empStore$ | withLoading | async as empStore" class="flex emp_cards" (click)="deleteEmployee($event)">
+                <ng-template [ngIf]="empStore.value">
+                        <app-emp-card *ngFor="let emp of empStore.value.emps | filter:filterText:'name' | sort:sortObj"  [empData]="emp">
+                        </app-emp-card>
+                </ng-template>
+                <ng-template [ngIf]="empStore.loading">
+                        <app-loader [isLoading]="empStore.loading"></app-loader>
+                </ng-template>
+                <ng-template [ngIf]="empStore.error">
+                        <app-error></app-error>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</section>
