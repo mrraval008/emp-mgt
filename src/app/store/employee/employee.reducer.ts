@@ -8,7 +8,7 @@ export interface State{
 }
 
 const initialEmp:State = {
-    emps:null,
+    emps:[],
     editEmp:null,
     editEmpIndex:-1
 } 
